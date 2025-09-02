@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fitting Finder</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 500px; margin: auto; padding: 20px; }
+    select, button { margin: 10px 0; display: block; width: 100%; padding: 8px; }
+    h1 { color: #0074D9; }
+  </style>
+</head>
+<body>
+  <h1>Fitting Finder</h1>
+  <p>Select your pipe details to find a fitting:</p>
+
+  <!-- Pipe size -->
+  <label for="pipeSize">Pipe Diameter:</label>
+  <select id="pipeSize">
+    <option value="15">15mm</option>
+    <option value="20">20mm</option>
+    <option value="25">25mm</option>
+  </select>
+
+  <!-- Connection type -->
+  <label for="connectionType">Connection Type:</label>
+  <select id="connectionType">
+    <option value="compression">Compression</option>
+    <option value="pushfit">Push Fit</option>
+    <option value="threaded">Threaded</option>
+  </select>
+
+  <!-- Button -->
+  <button onclick="findFitting()">Find Fitting</button>
+
+  <!-- Result -->
+  <p id="result"></p>
+
+  <script>
+    function findFitting() {
+      const pipe = document.getElementById('pipeSize').value;
+      const conn = document.getElementById('connectionType').value;
+      let fitting = '';
+
+      if (pipe === '15' && conn === 'compression') fitting = '15mm Compression Elbow – SKU 101';
+      else if (pipe === '20' && conn === 'pushfit') fitting = '20mm Push Fit Elbow – SKU 202';
+      else if (pipe === '25' && conn === 'threaded') fitting = '25mm Threaded Elbow – SKU 303';
+      else fitting = 'Sorry, no matching fitting found.';
+
+      document.getElementById('result').textContent = fitting;
+    }
+  </script>
+</body
