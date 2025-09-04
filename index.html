@@ -4,7 +4,7 @@
   <title>Fitting Finder</title>
   <style>
     body { font-family: Arial, sans-serif; max-width: 500px; margin: auto; padding: 20px; }
-    select, button { margin: 10px 0; display: block; width: 100%; padding: 8px; }
+    select, button, input { margin: 10px 0; display: block; width: 100%; padding: 8px; }
     h1 { color: #0074D9; }
   </style>
 </head>
@@ -28,7 +28,7 @@
     <option value="threaded">Threaded</option>
   </select>
 
-  <!-- NEW: Material -->
+  <!-- Material -->
   <label for="materialType">Material:</label>
   <select id="materialType">
     <option value="brass">Brass</option>
@@ -39,8 +39,13 @@
   <!-- Button -->
   <button onclick="findFitting()">Find Fitting</button>
 
-  <!-- Result -->
+  <!-- Finder Result -->
   <p id="result"></p>
+
+  <!-- NEW: Upload a photo -->
+  <h2>Or upload a photo of your fitting</h2>
+  <input type="file" id="upload" accept="image/*">
+  <p id="photoResult"></p>
 
   <script>
     function findFitting() {
@@ -49,32 +54,25 @@
       const mat = document.getElementById('materialType').value;
       let fitting = '';
 
-      // Examples with material
       if (pipe === '15' && conn === 'compression' && mat === 'brass') 
         fitting = '15mm Brass Compression Elbow – SKU 101B';
       else if (pipe === '20' && conn === 'pushfit' && mat === 'pvc') 
         fitting = '20mm PVC Push Fit Elbow – SKU 202P';
       else if (pipe === '25' && conn === 'threaded' && mat === 'steel') 
         fitting = '25mm Steel Threaded Elbow – SKU 303S';
-
-      // Extra examples
-      else if (pipe === '20' && conn === 'compression' && mat === 'brass') 
-        fitting = '20mm Brass Compression Coupler – SKU 205B';
-      else if (pipe === '25' && conn === 'compression' && mat === 'pvc') 
-        fitting = '25mm PVC Compression Straight – SKU 306P';
-
-      // If no match
-      else fitting = 'Sorry, no matching fitting found.';
+      else
+        fitting = 'Sorry, no matching fitting found.';
 
       document.getElementById('result').textContent = fitting;
     }
+
+    // Placeholder for photo upload
+    document.getElementById('upload').addEventListener('change', function() {
+      document.getElementById('photoResult').textContent = 
+        'Photo uploaded! (Next step: connect to AI to identify it.)';
+    });
   </script>
 </body>
 </html>
-<!-- Existing Finder code (pipe size, connection type, material, etc.) -->
 
-<!-- NEW: Upload a photo -->
-<h2>Or upload a photo of your fitting</h2>
-<input type="file" id="upload" accept="image/*">
-<p id="result"></p>
 
