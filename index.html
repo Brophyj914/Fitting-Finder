@@ -40,12 +40,21 @@
       const conn = document.getElementById('connectionType').value;
       let fitting = '';
 
+      // Original examples
       if (pipe === '15' && conn === 'compression') fitting = '15mm Compression Elbow – SKU 101';
       else if (pipe === '20' && conn === 'pushfit') fitting = '20mm Push Fit Elbow – SKU 202';
       else if (pipe === '25' && conn === 'threaded') fitting = '25mm Threaded Elbow – SKU 303';
+
+      // NEW extra examples
+      else if (pipe === '15' && conn === 'pushfit') fitting = '15mm Push Fit Tee – SKU 104';
+      else if (pipe === '20' && conn === 'compression') fitting = '20mm Compression Coupler – SKU 205';
+      else if (pipe === '25' && conn === 'compression') fitting = '25mm Compression Straight – SKU 306';
+
+      // If no match
       else fitting = 'Sorry, no matching fitting found.';
 
       document.getElementById('result').textContent = fitting;
     }
   </script>
-</body
+</body>
+</html>
