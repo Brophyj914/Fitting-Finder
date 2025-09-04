@@ -28,6 +28,14 @@
     <option value="threaded">Threaded</option>
   </select>
 
+  <!-- NEW: Material -->
+  <label for="materialType">Material:</label>
+  <select id="materialType">
+    <option value="brass">Brass</option>
+    <option value="pvc">PVC</option>
+    <option value="steel">Steel</option>
+  </select>
+
   <!-- Button -->
   <button onclick="findFitting()">Find Fitting</button>
 
@@ -38,17 +46,22 @@
     function findFitting() {
       const pipe = document.getElementById('pipeSize').value;
       const conn = document.getElementById('connectionType').value;
+      const mat = document.getElementById('materialType').value;
       let fitting = '';
 
-      // Original examples
-      if (pipe === '15' && conn === 'compression') fitting = '15mm Compression Elbow – SKU 101';
-      else if (pipe === '20' && conn === 'pushfit') fitting = '20mm Push Fit Elbow – SKU 202';
-      else if (pipe === '25' && conn === 'threaded') fitting = '25mm Threaded Elbow – SKU 303';
+      // Examples with material
+      if (pipe === '15' && conn === 'compression' && mat === 'brass') 
+        fitting = '15mm Brass Compression Elbow – SKU 101B';
+      else if (pipe === '20' && conn === 'pushfit' && mat === 'pvc') 
+        fitting = '20mm PVC Push Fit Elbow – SKU 202P';
+      else if (pipe === '25' && conn === 'threaded' && mat === 'steel') 
+        fitting = '25mm Steel Threaded Elbow – SKU 303S';
 
-      // NEW extra examples
-      else if (pipe === '15' && conn === 'pushfit') fitting = '15mm Push Fit Tee – SKU 104';
-      else if (pipe === '20' && conn === 'compression') fitting = '20mm Compression Coupler – SKU 205';
-      else if (pipe === '25' && conn === 'compression') fitting = '25mm Compression Straight – SKU 306';
+      // Extra examples
+      else if (pipe === '20' && conn === 'compression' && mat === 'brass') 
+        fitting = '20mm Brass Compression Coupler – SKU 205B';
+      else if (pipe === '25' && conn === 'compression' && mat === 'pvc') 
+        fitting = '25mm PVC Compression Straight – SKU 306P';
 
       // If no match
       else fitting = 'Sorry, no matching fitting found.';
@@ -58,3 +71,4 @@
   </script>
 </body>
 </html>
+
